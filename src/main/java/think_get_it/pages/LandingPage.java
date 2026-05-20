@@ -1,4 +1,4 @@
-package thinkgetit.pages;
+package think_get_it.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;

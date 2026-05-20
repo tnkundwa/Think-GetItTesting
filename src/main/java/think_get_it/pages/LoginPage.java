@@ -1,4 +1,4 @@
-package thinkgetit.pages;
+package think_get_it.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -19,5 +19,12 @@ public class LoginPage extends BasePage {
         usernameInput.fill(username);
         passwordInput.fill(password);
         loginBtn.click();
+    }
+
+    public String getEmailText(){
+        return (String) usernameInput.evaluate("element => element.validationMessage");
+    }
+    public String getPasswordText(){
+        return (String) passwordInput.evaluate("element => element.validationMessage");
     }
 }

@@ -1,4 +1,4 @@
-package thinkgetit.pages;
+package think_get_it.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -12,6 +12,7 @@ public class CreateAccountPage extends BasePage {
     private final Locator password;
     private final Locator createAccountBtn;
     private final Locator signIn;
+    private final Locator  alertMessage;
 
     public CreateAccountPage(Page page) {
         super(page);
@@ -22,6 +23,7 @@ public class CreateAccountPage extends BasePage {
         this.password = page.getByPlaceholder("Min. 8 characters");
         this.createAccountBtn = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Create Account"));
         this.signIn = page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Sign In"));
+        this.alertMessage = page.getByText("Password must be at least 8 characters");
     }
 
     public String getPageTitle(){
@@ -39,12 +41,17 @@ public class CreateAccountPage extends BasePage {
     public void enterPassword(String newPassword){
         password.fill(newPassword);
     }
-    public HomePage clickCreateAccountBtn(){
+    public void clickCreateAccountBtn(){
         createAccountBtn.click();
-        return new HomePage(page);
     }
     public LoginPage clickSignIn(){
         signIn.click();
         return new LoginPage(page);
+    }
+    public String getAlertText(){
+        return alertMessage.innerText();
+    }
+    public String getEmailText(){
+        return (String) email.evaluate("element => element.validationMessage");
     }
 }

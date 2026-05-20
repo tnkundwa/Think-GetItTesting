@@ -3,8 +3,8 @@ package think_get_it;
 import com.microsoft.playwright.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import thinkgetit.pages.*;
-import thinkgetit.utils.ConfigReader;
+import think_get_it.pages.*;
+import think_get_it.utils.ConfigReader;
 
 import java.util.Arrays;
 

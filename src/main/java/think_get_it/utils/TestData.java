@@ -1,4 +1,4 @@
-package thinkgetit.utils;
+package think_get_it.utils;
 
 public class TestData {
     public static final String VALID_USER = "standard_user";

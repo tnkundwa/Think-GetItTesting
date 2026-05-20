@@ -1,7 +1,7 @@
-package thinkgetit.pages;
+package think_get_it.pages;
 
 import com.microsoft.playwright.Page;
-import thinkgetit.utils.ConfigReader;
+import think_get_it.utils.ConfigReader;
 
 public class BasePage {
     protected Page page;
