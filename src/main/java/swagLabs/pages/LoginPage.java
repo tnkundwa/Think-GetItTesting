@@ -1,0 +1,23 @@
+package swagLabs.pages;
+
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
+
+public class LoginPage extends BasePage {
+    private final Locator usernameInput;
+    private final Locator passwordInput;
+    private  final Locator loginBtn;
+
+    public LoginPage(Page page){
+        super(page);
+        this.usernameInput = page.getByPlaceholder("Username");
+        this.passwordInput = page.getByPlaceholder("Password");
+        this.loginBtn = page.locator("#login-button");
+    }
+
+    public void login(String username, String password){
+        usernameInput.fill(username);
+        passwordInput.fill(password);
+        loginBtn.click();
+    }
+}
