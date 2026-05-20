@@ -1,4 +1,4 @@
-package swagLabs.pages;
+package thinkgetit.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -10,9 +10,9 @@ public class LoginPage extends BasePage {
 
     public LoginPage(Page page){
         super(page);
-        this.usernameInput = page.getByPlaceholder("Username");
-        this.passwordInput = page.getByPlaceholder("Password");
-        this.loginBtn = page.locator("#login-button");
+        this.usernameInput = page.getByPlaceholder("you@example.com");
+        this.passwordInput = page.getByPlaceholder("••••••••");
+        this.loginBtn = page.locator(".btn-primary");
     }
 
     public void login(String username, String password){

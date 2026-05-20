@@ -1,10 +1,8 @@
-package swagLabsTests.cart;
+package think_get_it.cart;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import swagLabsTests.BaseTests;
-
-import java.util.Arrays;
+import think_get_it.BaseTests;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.testng.Assert.assertEquals;

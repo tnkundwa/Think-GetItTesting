@@ -1,4 +1,4 @@
-package swagLabs.utils;
+package thinkgetit.utils;
 
 public class Helpers {
 }

@@ -1,4 +1,4 @@
-package swagLabs.pages;
+package thinkgetit.pages;
 
 public class CheckoutPage {
 }

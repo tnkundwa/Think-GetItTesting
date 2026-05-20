@@ -1,12 +1,11 @@
-package swagLabsTests.products;
+package think_get_it.products;
 
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import swagLabsTests.BaseTests;
+import think_get_it.BaseTests;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

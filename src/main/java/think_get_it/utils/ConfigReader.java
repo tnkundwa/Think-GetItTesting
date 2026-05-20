@@ -1,4 +1,4 @@
-package swagLabs.utils;
+package thinkgetit.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package swagLabs.pages;
+package thinkgetit.pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;

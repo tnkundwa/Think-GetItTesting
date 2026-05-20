@@ -1,4 +1,4 @@
-package swagLabs.utils;
+package thinkgetit.utils;
 
 public class TestData {
     public static final String VALID_USER = "standard_user";

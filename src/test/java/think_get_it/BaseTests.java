@@ -1,12 +1,10 @@
-package swagLabsTests;
+package think_get_it;
 
 import com.microsoft.playwright.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import swagLabs.pages.CartPage;
-import swagLabs.pages.LoginPage;
-import swagLabs.pages.ProductPage;
-import swagLabs.utils.ConfigReader;
+import thinkgetit.pages.*;
+import thinkgetit.utils.ConfigReader;
 
 import java.util.Arrays;
 
@@ -16,8 +14,11 @@ public class BaseTests {
     protected BrowserContext context;
     protected Page page;
 
+    protected LandingPage landingPage;
+    protected HomePage homePage;
     protected LoginPage loginPage;
     protected ProductPage productPage;
+    protected CreateAccountPage createAccountPage;
     protected CartPage cartPage;
 
     @BeforeClass
@@ -27,9 +28,12 @@ public class BaseTests {
         context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
         page = context.newPage();
 
+        homePage = new  HomePage(page);
+        landingPage = new LandingPage(page);
         loginPage = new LoginPage(page);
         productPage = new ProductPage(page);
         cartPage = new CartPage(page);
+        createAccountPage = new CreateAccountPage(page);
     }
 
     @AfterClass
