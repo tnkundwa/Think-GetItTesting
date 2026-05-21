@@ -14,6 +14,7 @@ public class ProductPage extends BasePage{
     private final Locator description;
     private final Locator shippingInfo;
     private final Locator returnPolicy;
+    private final Locator confirmAlert;
 
     public ProductPage(Page page){
         super(page);
@@ -21,11 +22,12 @@ public class ProductPage extends BasePage{
 //        this.productPrice = page.locator("p");
         this.addToCart = page.locator("Add to Cart");
         this.addProductQuantity = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("+"));
-        this.reduceProductQuantity = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("-"));
+        this.reduceProductQuantity = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("−"));
         this.productQuantity = page.locator("div.flex span.w-12");
         this.description = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Description"));
         this.shippingInfo = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Shipping Info"));
         this.returnPolicy = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Returns Policy"));
+        this.confirmAlert = page.getByText("Added to cart");
     }
 
     public String getProductName(){
@@ -55,5 +57,8 @@ public class ProductPage extends BasePage{
     }
     public Locator getReturnPolicy(){
         return returnPolicy;
+    }
+    public Locator getConfirmAlert(){
+        return confirmAlert;
     }
 }

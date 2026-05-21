@@ -13,8 +13,9 @@ public class AuthenticationTest extends BaseTests {
     @BeforeMethod
     public void beforeMethod(){
         landingPage.navigate("baseUrl");
-        landingPage.goToCreateAccountPage();
+        landingPage.goToLoginPage();
     }
+
     @Test
     public void testLoginValidCredentials(){
         loginPage.login(loginPage.getEmail(), loginPage.getPassword());
