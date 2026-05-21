@@ -10,49 +10,28 @@ import java.util.Collections;
 import java.util.List;
 
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class ProductBrowsingTest extends BaseTests {
     @BeforeClass
     public void beforeClass(){
-        loginPage.navigate("baseUrl");
-        loginPage.login("standard_user", "secret_sauce");
+        landingPage.navigate("baseUrl");
+        landingPage.goToLoginPage();
+        loginPage.login(loginPage.getEmail(), loginPage.getPassword());
+        homePage.goToProductPage("Portable Bluetooth Speaker");
     }
     @Test
-    public void testSortByNameAtoZ(){
-        List<String> actualNamesBefore = productPage.getAllItemsNames();
-        productPage.sortItems("az");
-        List<String> expectedNames = actualNamesBefore.stream().sorted().toList();
-        List<String> actualNamesAfter = productPage.getAllItemsNames();
-        assertEquals(actualNamesAfter, expectedNames);
-    }
-
-    @Test
-    public void testSortByNameZtoA(){
-        List<String> actualNamesBefore = productPage.getAllItemsNames();
-        productPage.sortItems("za");
-        List<String> expectedNames = new ArrayList<>(actualNamesBefore.stream().sorted().toList());
-        List<String> actualNamesAfter = productPage.getAllItemsNames();
-        Collections.reverse(expectedNames);
-        assertEquals(actualNamesAfter, expectedNames);
-    }
-
-    @Test
-    public void testSortByPriceLowHigh(){
-        List<Double> actualPricesBefore = productPage.getAllItemsPrices();
-        productPage.sortItems("lohi");
-        List<Double> expectedPrices = actualPricesBefore.stream().sorted().toList();
-        List<Double> actualPricesAfter = productPage.getAllItemsPrices();
-        assertEquals(actualPricesAfter, expectedPrices);
-    }
-
-    @Test
-    public void testSortByPriceHighLow(){
-        List<Double> actualPricesBefore = productPage.getAllItemsPrices();
-        productPage.sortItems("hilo");
-        List<Double> expectedPrices = new ArrayList<>(actualPricesBefore.stream().sorted().toList());
-        List<Double> actualPricesAfter = productPage.getAllItemsPrices();
-        Collections.reverse(expectedPrices);
-        assertEquals(actualPricesAfter, expectedPrices);
+    public void testProductBrowsing(){
+        assertTrue(page.url().endsWith("portable-bluetooth-speaker"));
+        assertEquals(productPage.getProductName(), "Portable Bluetooth Speaker");
+        productPage.increaseProductQuantity(4);
+        assertEquals(productPage.getProductQuantity(), 4);
+        productPage.decreaseProductQuantity(3);
+        assertEquals(productPage.getProductQuantity(), 1);
+        assertThat(productPage.getDescription()).isVisible();
+        assertThat(productPage.getShippingInfo()).isVisible();
+        assertThat(productPage.getReturnPolicy()).isVisible();
     }
 }
