@@ -8,8 +8,7 @@ import think_get_it.BaseTests;
 
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class ProductBrowsingTest extends BaseTests {
     @BeforeClass
@@ -17,12 +16,15 @@ public class ProductBrowsingTest extends BaseTests {
         landingPage.navigate("baseUrl");
         landingPage.goToLoginPage();
         loginPage.login(loginPage.getEmail(), loginPage.getPassword());
+        page.waitForURL("**/home");
     }
     @Test
     public void testProductBrowsing(){
         homePage.goToProductPage("Cargo Utility Shorts");
         assertTrue(page.url().contains("cargo-utility-shorts"));
         assertEquals(productPage.getProductName(), "Cargo Utility Shorts");
+        productPage.selectSize("XL");
+        productPage.selectColor("Black");
         productPage.increaseProductQuantity(4);
         assertEquals(productPage.getProductQuantity(), 5);
         productPage.decreaseProductQuantity(3);
@@ -30,9 +32,9 @@ public class ProductBrowsingTest extends BaseTests {
         assertThat(productPage.getDescription()).isVisible();
         assertThat(productPage.getShippingInfo()).isVisible();
         assertThat(productPage.getReturnPolicy()).isVisible();
-        assertThat(productPage.getConfirmAlert()).isVisible();
         productPage.addToCart();
-        assertEquals(productPage.getConfirmAlert().textContent(), "Added to cart");
+        assertThat(productPage.getConfirmAlert()).isVisible();
+        assertEquals(productPage.getConfirmAlert().textContent(), "Added to cart!");
     }
 
     @Test
@@ -40,7 +42,7 @@ public class ProductBrowsingTest extends BaseTests {
         homePage.goToShopPage();
         assertTrue(page.url().contains("products"));
         assertEquals(shopPage.getPageTitle(), "All Products");
-        assertThat(shopPage.isAllProducts()).isVisible();
+        assertThat(shopPage.isAllProducts()).not().hasCount(0);
     }
 
     @Test
@@ -52,11 +54,9 @@ public class ProductBrowsingTest extends BaseTests {
 
     @Test
     public void testBrowseByPrice(){
-        double min = 1.0;
-        double max = 5.0;
         homePage.goToShopPage();
-        shopPage.selectPrice("$.price");
-        assertTrue(shopPage.isProductsFilteredPrice().stream().allMatch(n -> n >= min && n <= max));
+        String[] prices = shopPage.selectPrice(1);
+        assertTrue(shopPage.isProductsFilteredPrice().stream().allMatch(n -> n >= Double.parseDouble(prices[0]) && n <= Double.parseDouble(prices[1])));
     }
 
     @Test

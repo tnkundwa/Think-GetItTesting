@@ -21,6 +21,7 @@ public class BaseTests {
     protected CreateAccountPage createAccountPage;
     protected CartPage cartPage;
     protected ShopPage shopPage;
+    protected CheckoutPage checkoutPage;
 
     @BeforeClass
     public void setUp(){
@@ -36,6 +37,7 @@ public class BaseTests {
         cartPage = new CartPage(page);
         createAccountPage = new CreateAccountPage(page);
         shopPage = new ShopPage(page);
+        checkoutPage = new CheckoutPage(page);
     }
 
     @AfterClass

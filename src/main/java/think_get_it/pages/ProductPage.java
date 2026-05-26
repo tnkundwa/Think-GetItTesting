@@ -4,6 +4,8 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 
+import java.util.regex.Pattern;
+
 public class ProductPage extends BasePage{
     private final Locator productName;
 //    private final Locator productPrice;
@@ -15,12 +17,14 @@ public class ProductPage extends BasePage{
     private final Locator shippingInfo;
     private final Locator returnPolicy;
     private final Locator confirmAlert;
+    private final Locator size;
+    private final Locator color;
 
     public ProductPage(Page page){
         super(page);
         this.productName = page.locator("div h1");
 //        this.productPrice = page.locator("p");
-        this.addToCart = page.locator("Add to Cart");
+        this.addToCart = page.getByText("Add to Cart");
         this.addProductQuantity = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("+"));
         this.reduceProductQuantity = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("−"));
         this.productQuantity = page.locator("div.flex span.w-12");
@@ -28,6 +32,8 @@ public class ProductPage extends BasePage{
         this.shippingInfo = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Shipping Info"));
         this.returnPolicy = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Returns Policy"));
         this.confirmAlert = page.getByText("Added to cart");
+        this.size = page.locator("div.flex button.px-4.rounded-xl");
+        this.color = page.locator("//button[@title]");
     }
 
     public String getProductName(){
@@ -57,6 +63,16 @@ public class ProductPage extends BasePage{
     }
     public Locator getReturnPolicy(){
         return returnPolicy;
+    }
+    public void selectSize(String sizeValue){
+        size.getByText(sizeValue, new Locator.GetByTextOptions().setExact(true)).click();
+    }
+    public void selectColor(String colorValue){
+        if (colorValue.equals("Navy")){
+            color.nth(0).click();
+        } else  {
+            color.nth(1).click();
+        }
     }
     public Locator getConfirmAlert(){
         return confirmAlert;

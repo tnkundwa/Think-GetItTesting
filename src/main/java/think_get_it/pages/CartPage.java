@@ -30,6 +30,7 @@ public class CartPage extends BasePage{
         return checkout;
     }
     public void goToCheckoutPage(){
+        checkout.waitFor();
         checkout.click();
     }
     public Locator isViewCart(){
@@ -49,7 +50,7 @@ public class CartPage extends BasePage{
     public Locator isTotalPrice(){
         return totalPrice;
     }
-    public int getTotalPrice(){
-        return Integer.parseInt(totalPrice.innerText());
+    public Double getTotalPrice(){
+        return Double.parseDouble(totalPrice.innerText().replace("$", ""));
     }
 }

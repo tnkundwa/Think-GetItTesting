@@ -41,8 +41,10 @@ public class ShopPage extends BasePage {
     public List<String> isProductsFilteredCategory() {
         return productsCategories.all().stream().map(Locator::innerText).toList();
     }
-    public void selectPrice(String priceFilterRange) {
-        prices.filter(new Locator.FilterOptions().setHasText(priceFilterRange)).click();
+    public String[] selectPrice(int priceFilterRange) {
+        Locator priceRange = prices.all().get(priceFilterRange);
+        priceRange.click();
+        return priceRange.innerText().replace("$", "").split("–");
     }
     public List<Double> isProductsFilteredPrice() {
         return productsPrices.all().stream().map(Locator::innerText).map(price -> price.replace("$", "")).map(Double::parseDouble).toList();
