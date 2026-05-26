@@ -21,6 +21,8 @@ public class CheckoutPage extends BasePage {
     private final Locator orderSummary;
     private final Locator placeOrder;
     private String mode;
+    private Locator orderPlaced;
+
     public CheckoutPage(Page page) {
         super(page);
         this.pageTitle = page.locator("div h1");
@@ -38,6 +40,7 @@ public class CheckoutPage extends BasePage {
         this.country = page.getByPlaceholder("Country");
         this.saveAddress = page.getByText("Save Address");
         this.orderSummary = page.locator("div h3");
+        this.orderPlaced = page.getByText("Order Placed Successfully");
     }
 
     public String getTitle(){
@@ -47,7 +50,6 @@ public class CheckoutPage extends BasePage {
         addNewAddress.click();
     }
     public void addDetails(String first, String last, String num, String streetNum, String cityName, String stateName, String countryName){
-        addNewAddress.click();
         firstName.fill(first);
         lastName.fill(last);
         phone.fill(num);
@@ -74,5 +76,8 @@ public class CheckoutPage extends BasePage {
     }
     public void placeOrder(){
         placeOrder.click();
+    }
+    public Locator orderPlaced(){
+        return orderPlaced;
     }
 }
