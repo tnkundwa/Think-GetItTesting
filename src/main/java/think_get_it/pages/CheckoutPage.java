@@ -21,12 +21,16 @@ public class CheckoutPage extends BasePage {
     private final Locator orderSummary;
     private final Locator placeOrder;
     private String mode;
+<<<<<<< Updated upstream
     private Locator orderPlaced;
 
+=======
+    private final Locator address;
+>>>>>>> Stashed changes
     public CheckoutPage(Page page) {
         super(page);
         this.pageTitle = page.locator("div h1");
-        this.addNewAddress = page.getByText("Add new address");
+        this.addNewAddress = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Add new address"));
         this.continueToPayment = page.getByText("Continue to Payment");
         this.modeOfPayment = page.locator("//label[contains(.,"  + mode + ")]");
         this.reviewOrder = page.getByText("Review Order");
@@ -40,7 +44,11 @@ public class CheckoutPage extends BasePage {
         this.country = page.getByPlaceholder("Country");
         this.saveAddress = page.getByText("Save Address");
         this.orderSummary = page.locator("div h3");
+<<<<<<< Updated upstream
         this.orderPlaced = page.getByText("Order Placed Successfully");
+=======
+        this.address = page.locator("div.space-y-4 label");
+>>>>>>> Stashed changes
     }
 
     public String getTitle(){
@@ -77,7 +85,12 @@ public class CheckoutPage extends BasePage {
     public void placeOrder(){
         placeOrder.click();
     }
+<<<<<<< Updated upstream
     public Locator orderPlaced(){
         return orderPlaced;
+=======
+    public void chooseAddress(int position){
+        address.nth(position).click();
+>>>>>>> Stashed changes
     }
 }

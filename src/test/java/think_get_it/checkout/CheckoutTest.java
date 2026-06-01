@@ -10,7 +10,7 @@ import static org.testng.Assert.assertTrue;
 
 public class CheckoutTest extends BaseTests {
     @BeforeMethod
-    public void beforeClass(){
+    public void beforeMethod(){
         landingPage.navigate("baseUrl");
         landingPage.goToLoginPage();
         loginPage.login(loginPage.getEmail(), loginPage.getPassword());
@@ -19,6 +19,7 @@ public class CheckoutTest extends BaseTests {
     }
 
     @Test
+<<<<<<< Updated upstream
     public void testCheckout(){
         checkoutPage.continueToPayment();
         checkoutPage.paymentMode("Cash");
@@ -34,6 +35,8 @@ public class CheckoutTest extends BaseTests {
     }
 
     @Test
+=======
+>>>>>>> Stashed changes
     public void testCheckoutWithNewAddress(){
         assertEquals(checkoutPage.getTitle(), "Checkout");
         assertThat(checkoutPage.orderSummary()).isVisible();
@@ -52,5 +55,19 @@ public class CheckoutTest extends BaseTests {
         assertThat(singleOrderPage.getSummary()).isVisible();
     }
 
+<<<<<<< Updated upstream
+=======
+    @Test
+    public void testCheckoutWithoutNewAddress(){
+        assertEquals(checkoutPage.getTitle(), "Checkout");
+        checkoutPage.chooseAddress(3);
+        checkoutPage.continueToPayment();
+        checkoutPage.paymentMode("Cash");
+        checkoutPage.reviewOrder();
+        assertThat(checkoutPage.orderSummary()).isVisible();
+        assertThat(checkoutPage.isPlaceOrder()).isVisible();
+        checkoutPage.placeOrder();
+    }
+>>>>>>> Stashed changes
 
 }
