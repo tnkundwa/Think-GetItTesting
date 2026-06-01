@@ -19,24 +19,6 @@ public class CheckoutTest extends BaseTests {
     }
 
     @Test
-<<<<<<< Updated upstream
-    public void testCheckout(){
-        checkoutPage.continueToPayment();
-        checkoutPage.paymentMode("Cash");
-        checkoutPage.reviewOrder();
-        assertThat(checkoutPage.isPlaceOrder()).isVisible();
-        checkoutPage.placeOrder();
-        assertThat(checkoutPage.orderPlaced()).isVisible();
-        assertThat(checkoutPage.orderPlaced()).containsText("Order placed successfully!");
-        assertTrue(singleOrderPage.getTitle().contains("Order"));
-        assertThat(singleOrderPage.getAllProducts()).not().hasCount(0);
-        assertThat(singleOrderPage.getCancelOrder()).isVisible();
-        assertThat(singleOrderPage.getSummary()).isVisible();
-    }
-
-    @Test
-=======
->>>>>>> Stashed changes
     public void testCheckoutWithNewAddress(){
         assertEquals(checkoutPage.getTitle(), "Checkout");
         assertThat(checkoutPage.orderSummary()).isVisible();
@@ -54,9 +36,6 @@ public class CheckoutTest extends BaseTests {
         assertThat(singleOrderPage.getCancelOrder()).isVisible();
         assertThat(singleOrderPage.getSummary()).isVisible();
     }
-
-<<<<<<< Updated upstream
-=======
     @Test
     public void testCheckoutWithoutNewAddress(){
         assertEquals(checkoutPage.getTitle(), "Checkout");
@@ -68,6 +47,4 @@ public class CheckoutTest extends BaseTests {
         assertThat(checkoutPage.isPlaceOrder()).isVisible();
         checkoutPage.placeOrder();
     }
->>>>>>> Stashed changes
-
 }
