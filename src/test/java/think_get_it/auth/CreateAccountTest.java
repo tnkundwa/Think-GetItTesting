@@ -18,7 +18,6 @@ public class CreateAccountTest extends BaseTests {
 
     @BeforeMethod
     public void beforeMethod(){
-        landingPage.navigate("baseUrl");
         landingPage.goToCreateAccountPage();
     }
 
@@ -51,7 +50,7 @@ public class CreateAccountTest extends BaseTests {
         createAccountPage.enterFirstName(firstName);
         createAccountPage.enterLastName(lastName);
         createAccountPage.enterEmail(email);
-        createAccountPage.enterPassword("yy");
+        createAccountPage.enterPassword("");
         createAccountPage.clickCreateAccountBtn();
         assertEquals(createAccountPage.getPageTitle(),  "Create account");
         assertEquals(createAccountPage.getAlertText(),  "Password must be at least 8 characters");

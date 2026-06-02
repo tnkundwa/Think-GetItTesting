@@ -11,8 +11,7 @@ import think_get_it.BaseTests;
 
 public class AuthenticationTest extends BaseTests {
     @BeforeMethod
-    public void beforeMethod(){
-        landingPage.navigate("baseUrl");
+    public void navigateToLoginPage() {
         landingPage.goToLoginPage();
     }
 
@@ -24,7 +23,7 @@ public class AuthenticationTest extends BaseTests {
         assertThat(homePage.shopLinkVisible()).isVisible();
         assertThat(homePage.homeLinkVisible()).isVisible();
         homePage.hoverProfileIcon();
-        assertEquals(homePage.getLoginEmail(), "admin@thinkandgetit.com");
+        assertEquals(homePage.getLoginEmail(), "tn@gmail.com");
         assertThat(homePage.isSignedInAs()).isVisible();
         assertThat(homePage.profileLinkVisible()).isVisible();
         assertThat(homePage.signOutLinkVisible()).isVisible();

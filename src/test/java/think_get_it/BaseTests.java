@@ -2,7 +2,9 @@ package think_get_it;
 
 import com.microsoft.playwright.*;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import think_get_it.pages.*;
 import think_get_it.utils.ConfigReader;
 
@@ -26,12 +28,15 @@ public class BaseTests {
     protected SingleOrderPage singleOrderPage;
 
     @BeforeClass
-    public void setUp(){
+    public void setUpClass(){
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(Boolean.parseBoolean(ConfigReader.getProperty("headless"))).setArgs(Arrays.asList("--start-maximized")));
+    }
+
+    @BeforeMethod
+    public void setUpMethod(){
         context = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
         page = context.newPage();
-
         homePage = new  HomePage(page);
         landingPage = new LandingPage(page);
         loginPage = new LoginPage(page);
@@ -42,10 +47,17 @@ public class BaseTests {
         checkoutPage = new CheckoutPage(page);
         ordersPage = new OrdersPage(page);
         singleOrderPage = new SingleOrderPage(page);
+        landingPage.navigate("baseUrl");
+    }
+
+    @AfterMethod
+    public void tearDownMethod(){
+        if (page != null) page.close();
+        if (context != null) context.close();
     }
 
     @AfterClass
-    public void tearDown(){
+    public void tearDownClass(){
         if(browser != null){
             browser.close();
         }
@@ -53,5 +65,4 @@ public class BaseTests {
             playwright.close();
         }
     }
-
 }

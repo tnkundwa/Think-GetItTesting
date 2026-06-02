@@ -13,7 +13,6 @@ import static org.testng.Assert.*;
 public class ProductBrowsingTest extends BaseTests {
     @BeforeClass
     public void beforeClass(){
-        landingPage.navigate("baseUrl");
         landingPage.goToLoginPage();
         loginPage.login(loginPage.getEmail(), loginPage.getPassword());
         page.waitForURL("**/home");

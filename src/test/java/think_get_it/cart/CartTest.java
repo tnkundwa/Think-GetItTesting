@@ -11,7 +11,6 @@ import static org.testng.Assert.assertEquals;
 public class CartTest extends BaseTests {
     @BeforeMethod
     public void beforeClass(){
-        landingPage.navigate("baseUrl");
         landingPage.goToLoginPage();
         loginPage.login(loginPage.getEmail(), loginPage.getPassword());
         homePage.addProductToCart("Cargo Utility Shorts");
