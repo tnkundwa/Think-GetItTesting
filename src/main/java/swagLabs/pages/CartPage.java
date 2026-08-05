@@ -38,4 +38,7 @@ public class CartPage extends BasePage{
     public int getItemsInCart(){
         return rowsInCart.count();
     }
+    public void clickCheckout() {
+        checkout.click();
+    }
 }
