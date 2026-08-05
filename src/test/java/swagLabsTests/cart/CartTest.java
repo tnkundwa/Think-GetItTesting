@@ -13,7 +13,7 @@ public class CartTest extends BaseTests {
     @BeforeClass
     public void beforeClass(){
         loginPage.navigate("baseUrl");
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.loginValid("standard_user", "secret_sauce");
     }
     @Test
     public void addtoCart(){

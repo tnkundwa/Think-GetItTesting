@@ -15,7 +15,7 @@ public class EndToEndFlowTest extends BaseTests {
     public void testCompleteE2ECheckoutFlow() {
         // 1. Authentication
         loginPage.navigate("baseUrl");
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.loginValid("standard_user", "secret_sauce");
         assertEquals(productPage.getTitle(), "Products");
 
         // 2. Add multiple items to cart (using data-test attributes captured via codegen)
